@@ -62,10 +62,10 @@ namespace Turtle_IDE.Core
             toolbarService.Get("Edit").Add(menuService.Get("_Edit").Get("_Paste"));
 
             toolbarService.Add(new ToolbarViewModel("Debug", 1) { Band = 1, BandIndex = 3 });
-            toolbarService.Get("Debug").Add(new MenuItemViewModel("Debug", 1, new BitmapImage(new Uri(@"pack://application:,,,/WideMD.Core;component/Icons/Play.png"))));
-            toolbarService.Get("Debug").Get("Debug").Add(new MenuItemViewModel("Debug with Chrome", 1, new BitmapImage(new Uri(@"pack://application:,,,/WideMD.Core;component/Icons/Play.png")), manager.GetCommand("OPEN")));
-            toolbarService.Get("Debug").Get("Debug").Add(new MenuItemViewModel("Debug with FireFox", 2, new BitmapImage(new Uri(@"pack://application:,,,/WideMD.Core;component/Icons/Play.png")), manager.GetCommand("OPEN")));
-            toolbarService.Get("Debug").Get("Debug").Add(new MenuItemViewModel("Debug with Explorer", 3, new BitmapImage(new Uri(@"pack://application:,,,/WideMD.Core;component/Icons/Play.png")), manager.GetCommand("OPEN")));
+            toolbarService.Get("Debug").Add(new MenuItemViewModel("Debug", 1, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png"))));
+            toolbarService.Get("Debug").Get("Debug").Add(new MenuItemViewModel("Debug with Chrome", 1, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png")), manager.GetCommand("OPEN")));
+            toolbarService.Get("Debug").Get("Debug").Add(new MenuItemViewModel("Debug with FireFox", 2, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png")), manager.GetCommand("OPEN")));
+            toolbarService.Get("Debug").Get("Debug").Add(new MenuItemViewModel("Debug with Explorer", 3, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png")), manager.GetCommand("OPEN")));
 
             menuService.Get("_Tools").Add(toolbarService.RightClickMenu);
 
@@ -148,7 +148,7 @@ namespace Turtle_IDE.Core
                 (new MenuItemViewModel("_New", 3,
                                        new BitmapImage(
                                            new Uri(
-                                               @"pack://application:,,,/WideMD.Core;component/Icons/NewRequest_8796.png")),
+                                               @"pack://application:,,,/Turtle-IDE.Core;component/Icons/NewRequest_8796.png")),
                                        manager.GetCommand("NEW"),
                                        new KeyGesture(Key.N, ModifierKeys.Control, "Ctrl + N"))));
 
@@ -156,19 +156,19 @@ namespace Turtle_IDE.Core
                 (new MenuItemViewModel("_Open", 4,
                                        new BitmapImage(
                                            new Uri(
-                                               @"pack://application:,,,/WideMD.Core;component/Icons/OpenFileDialog_692.png")),
+                                               @"pack://application:,,,/Turtle-IDE.Core;component/Icons/OpenFileDialog_692.png")),
                                        manager.GetCommand("OPEN"),
                                        new KeyGesture(Key.O, ModifierKeys.Control, "Ctrl + O"))));
             menuService.Get("_File").Add(new MenuItemViewModel("_Save", 5,
                                                                new BitmapImage(
                                                                    new Uri(
-                                                                       @"pack://application:,,,/WideMD.Core;component/Icons/Save_6530.png")),
+                                                                       @"pack://application:,,,/Turtle-IDE.Core;component/Icons/Save_6530.png")),
                                                                manager.GetCommand("SAVE"),
                                                                new KeyGesture(Key.S, ModifierKeys.Control, "Ctrl + S")));
             menuService.Get("_File").Add(new SaveAsMenuItemViewModel("Save As..", 6,
                                                    new BitmapImage(
                                                        new Uri(
-                                                           @"pack://application:,,,/WideMD.Core;component/Icons/Save_6530.png")),
+                                                           @"pack://application:,,,/Turtle-IDE.Core;component/Icons/Save_6530.png")),
                                                    manager.GetCommand("SAVEAS"), null, false, false, _container));
 
             menuService.Get("_File").Add(new MenuItemViewModel("Close", 8, null, manager.GetCommand("CLOSE"),
@@ -184,28 +184,28 @@ namespace Turtle_IDE.Core
             menuService.Get("_Edit").Add(new MenuItemViewModel("_Undo", 1,
                                                                new BitmapImage(
                                                                    new Uri(
-                                                                       @"pack://application:,,,/WideMD.Core;component/Icons/Undo_16x.png")),
+                                                                       @"pack://application:,,,/Turtle-IDE.Core;component/Icons/Undo_16x.png")),
                                                                ApplicationCommands.Undo));
             menuService.Get("_Edit").Add(new MenuItemViewModel("_Redo", 2,
                                                                new BitmapImage(
                                                                    new Uri(
-                                                                       @"pack://application:,,,/WideMD.Core;component/Icons/Redo_16x.png")),
+                                                                       @"pack://application:,,,/Turtle-IDE.Core;component/Icons/Redo_16x.png")),
                                                                ApplicationCommands.Redo));
             menuService.Get("_Edit").Add(MenuItemViewModel.Separator(15));
             menuService.Get("_Edit").Add(new MenuItemViewModel("Cut", 20,
                                                                new BitmapImage(
                                                                    new Uri(
-                                                                       @"pack://application:,,,/WideMD.Core;component/Icons/Cut_6523.png")),
+                                                                       @"pack://application:,,,/Turtle-IDE.Core;component/Icons/Cut_6523.png")),
                                                                ApplicationCommands.Cut));
             menuService.Get("_Edit").Add(new MenuItemViewModel("Copy", 21,
                                                                new BitmapImage(
                                                                    new Uri(
-                                                                       @"pack://application:,,,/WideMD.Core;component/Icons/Copy_6524.png")),
+                                                                       @"pack://application:,,,/Turtle-IDE.Core;component/Icons/Copy_6524.png")),
                                                                ApplicationCommands.Copy));
             menuService.Get("_Edit").Add(new MenuItemViewModel("_Paste", 22,
                                                                new BitmapImage(
                                                                    new Uri(
-                                                                       @"pack://application:,,,/WideMD.Core;component/Icons/Paste_6520.png")),
+                                                                       @"pack://application:,,,/Turtle-IDE.Core;component/Icons/Paste_6520.png")),
                                                                ApplicationCommands.Paste));
 
             menuService.Add(new MenuItemViewModel("_View", 3));
@@ -214,7 +214,7 @@ namespace Turtle_IDE.Core
                 menuService.Get("_View").Add(new MenuItemViewModel("_Logger", 1,
                                                                    new BitmapImage(
                                                                        new Uri(
-                                                                           @"pack://application:,,,/WideMD.Core;component/Icons/Undo_16x.png")),
+                                                                           @"pack://application:,,,/Turtle-IDE.Core;component/Icons/Undo_16x.png")),
                                                                    manager.GetCommand("LOGSHOW"))
                 { IsCheckable = true, IsChecked = logger.IsVisible });
 

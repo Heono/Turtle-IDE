@@ -192,8 +192,8 @@ namespace Wide.Core
                 if (metroView != null)
                 {
                     metroView.Top = position.Top;
-                    metroView.Left = position.Left; // 다름
-                    metroView.Width = position.Width; // 다름
+                    metroView.Left = position.Left;
+                    metroView.Width = position.Width;
                     metroView.Height = position.Height;
                     metroView.WindowState = position.State;
                 }

@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Turtle_IDE.Core</RootNamespace>
     <AssemblyName>Turtle-IDE.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,24 +34,30 @@
   <ItemGroup>
     <Reference Include="ICSharpCode.AvalonEdit">
       <HintPath>..\..\Libs\ICSharpCode.AvalonEdit.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\..\Libs\MarkdownSharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>..\..\Libs\Microsoft.Practices.Prism.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.Interactivity">
       <HintPath>..\..\Libs\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.UnityExtensions">
       <HintPath>..\..\Libs\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\Libs\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity">
       <HintPath>..\..\Libs\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -83,21 +90,22 @@
     <Compile Include="Settings\IDESettingsItem.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icons\Copy_6524.png" />
-    <Content Include="Icons\Cut_6523.png" />
-    <Content Include="Icons\MDType.png" />
-    <Content Include="Icons\NewRequest_8796.png" />
-    <Content Include="Icons\OpenFileDialog_692.png" />
-    <Content Include="Icons\Paste_6520.png" />
-    <Content Include="Icons\Play.png" />
-    <Content Include="Icons\Redo_16x.png" />
-    <Content Include="Icons\Save_6530.png" />
-    <Content Include="Icons\Undo_16x.png" />
+    <Resource Include="Icons\Copy_6524.png" />
+    <Resource Include="Icons\Cut_6523.png" />
+    <Resource Include="Icons\MDType.png" />
+    <Resource Include="Icons\NewRequest_8796.png" />
+    <Resource Include="Icons\OpenFileDialog_692.png" />
+    <Resource Include="Icons\Paste_6520.png" />
+    <Resource Include="Icons\Play.png" />
+    <Resource Include="Icons\Redo_16x.png" />
+    <Resource Include="Icons\Save_6530.png" />
+    <Resource Include="Icons\Undo_16x.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wide\Wide.csproj">
       <Project>{9f20f5ef-4f7e-4ae2-a462-4cd2256fb3ff}</Project>
       <Name>Wide</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
