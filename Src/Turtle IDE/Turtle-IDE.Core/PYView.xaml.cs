@@ -26,7 +26,7 @@ namespace Turtle_IDE.Core
             editor = textEditor;
             console = pythonConsole;
 
-            //textEditor.SyntaxHighlighting = HighlightingLoader.Load(new XmlTextReader(Environment.CurrentDirectory + "\\Python-Mode.xshd"), HighlightingManager.Instance);
+            textEditor.SyntaxHighlighting = HighlightingLoader.Load(new XmlTextReader(Environment.CurrentDirectory + @"\Res\Python.xshd"), HighlightingManager.Instance);
         }
 
         private void Caret_PositionChanged(object sender, EventArgs e)
