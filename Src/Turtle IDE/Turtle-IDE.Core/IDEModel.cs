@@ -27,13 +27,5 @@ namespace Turtle_IDE.Core
         {
             this.IsDirty = value;
         }
-
-        public string HTMLResult { get; set; }
-
-        public void SetHtml(string transform)
-        {
-            this.HTMLResult = transform;
-            RaisePropertyChanged("HTMLResult");
-        }
     }
 }

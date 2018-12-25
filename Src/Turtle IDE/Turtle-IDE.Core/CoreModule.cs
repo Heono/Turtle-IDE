@@ -61,11 +61,10 @@ namespace Turtle_IDE.Core
             toolbarService.Get("Edit").Add(menuService.Get("_Edit").Get("Copy"));
             toolbarService.Get("Edit").Add(menuService.Get("_Edit").Get("_Paste"));
 
-            toolbarService.Add(new ToolbarViewModel("Debug", 1) { Band = 1, BandIndex = 3 });
-            toolbarService.Get("Debug").Add(new MenuItemViewModel("Debug", 1, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png"))));
-            toolbarService.Get("Debug").Get("Debug").Add(new MenuItemViewModel("Debug with Chrome", 1, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png")), manager.GetCommand("OPEN")));
-            toolbarService.Get("Debug").Get("Debug").Add(new MenuItemViewModel("Debug with FireFox", 2, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png")), manager.GetCommand("OPEN")));
-            toolbarService.Get("Debug").Get("Debug").Add(new MenuItemViewModel("Debug with Explorer", 3, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png")), manager.GetCommand("OPEN")));
+            toolbarService.Add(new ToolbarViewModel("Run", 1) { Band = 1, BandIndex = 2 });
+            toolbarService.Get("Run").Add(new MenuItemViewModel("Run", 1, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png"))));
+            toolbarService.Get("Run").Get("Run").Add(new MenuItemViewModel("Run with IronPython", 1, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png")), manager.GetCommand("RUN")));
+            toolbarService.Get("Run").Get("Run").Add(new MenuItemViewModel("Run with Python3", 2, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png")), manager.GetCommand("RUN")));
 
             menuService.Get("_Tools").Add(toolbarService.RightClickMenu);
 
@@ -84,7 +83,7 @@ namespace Turtle_IDE.Core
         {
             _container.RegisterType<IDEHandler>();
             _container.RegisterType<IDEViewModel>();
-            _container.RegisterType<MDView>();
+            _container.RegisterType<PYView>();
 
             IContentHandler handler = _container.Resolve<IDEHandler>();
             _container.Resolve<IContentHandlerRegistry>().Register(handler);
@@ -114,6 +113,7 @@ namespace Turtle_IDE.Core
             var saveAsCommand = new DelegateCommand(SaveAsDocument, CanExecuteSaveAsDocument);
             var themeCommand = new DelegateCommand<string>(ThemeChangeCommand);
             var loggerCommand = new DelegateCommand(ToggleLogger);
+            var runCommand = new DelegateCommand(runPython);
 
 
             manager.RegisterCommand("OPEN", openCommand);
@@ -122,6 +122,7 @@ namespace Turtle_IDE.Core
             manager.RegisterCommand("EXIT", exitCommand);
             manager.RegisterCommand("LOGSHOW", loggerCommand);
             manager.RegisterCommand("THEMECHANGE", themeCommand);
+            manager.RegisterCommand("RUN", runCommand);
         }
 
         private void CloseCommandExecute()
@@ -332,6 +333,19 @@ namespace Turtle_IDE.Core
             }
         }
 
+        #endregion
+
+        #region Run Python Script
+
+        private void runPython()
+        {
+            string statementsToRun = "";
+            if (PYView.editor.TextArea.Selection.Length > 0)
+                statementsToRun = PYView.editor.TextArea.Selection.GetText();
+            else
+                statementsToRun = PYView.editor.TextArea.Document.Text;
+            PYView.console.Pad.Console.RunStatements(statementsToRun);
+        }
         #endregion
 
         #endregion

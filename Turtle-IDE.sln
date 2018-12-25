@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wide", "Wide", "{1B274611-D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PythonConsole", "PythonConsole", "{95C61292-CB7B-4C79-86B0-2314FA88D16F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronPythonConsole", "Src\PythonConsole\IronPythonConsole\IronPythonConsole.csproj", "{8A19EAA5-44C5-41EC-A908-7F41792CF18B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronPythonConsoleForm", "Src\PythonConsole\IronPythonConsoleForm\IronPythonConsoleForm.csproj", "{5B4DE2A6-8357-4F45-BF54-7C3CDFFB7E22}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turtle-IDE", "Src\Turtle IDE\Turtle-IDE\Turtle-IDE.csproj", "{EA9395FB-9EC1-4386-8A66-C501AE3AB358}"
@@ -29,12 +27,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8A19EAA5-44C5-41EC-A908-7F41792CF18B}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{8A19EAA5-44C5-41EC-A908-7F41792CF18B}.Debug|x86.ActiveCfg = Debug|x86
-		{8A19EAA5-44C5-41EC-A908-7F41792CF18B}.Debug|x86.Build.0 = Debug|x86
-		{8A19EAA5-44C5-41EC-A908-7F41792CF18B}.Release|Any CPU.ActiveCfg = Release|x86
-		{8A19EAA5-44C5-41EC-A908-7F41792CF18B}.Release|x86.ActiveCfg = Release|x86
-		{8A19EAA5-44C5-41EC-A908-7F41792CF18B}.Release|x86.Build.0 = Release|x86
 		{5B4DE2A6-8357-4F45-BF54-7C3CDFFB7E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5B4DE2A6-8357-4F45-BF54-7C3CDFFB7E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B4DE2A6-8357-4F45-BF54-7C3CDFFB7E22}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -80,7 +72,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8A19EAA5-44C5-41EC-A908-7F41792CF18B} = {95C61292-CB7B-4C79-86B0-2314FA88D16F}
 		{5B4DE2A6-8357-4F45-BF54-7C3CDFFB7E22} = {95C61292-CB7B-4C79-86B0-2314FA88D16F}
 		{EA9395FB-9EC1-4386-8A66-C501AE3AB358} = {BABDE3AC-B7AC-42B8-B6D3-D438BFC7960F}
 		{C8DA29B2-85C1-4104-8316-D7ADDE26BF3A} = {BABDE3AC-B7AC-42B8-B6D3-D438BFC7960F}

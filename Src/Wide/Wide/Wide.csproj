@@ -35,35 +35,52 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AvalonDock.Themes.VS2012, Version=2.0.1771.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libs\AvalonDock.Themes.VS2012.dll</HintPath>
+    <Reference Include="AvalonDock.Themes.VS2012">
+      <HintPath>..\..\..\Libs\AvalonDock.Themes.VS2012.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.AvalonEdit">
-      <HintPath>..\..\Libs\ICSharpCode.AvalonEdit.dll</HintPath>
+      <HintPath>..\..\..\Libs\ICSharpCode.AvalonEdit.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro">
-      <HintPath>..\..\Libs\MahApps.Metro.dll</HintPath>
+      <HintPath>..\..\..\Libs\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkdownSharp">
+      <HintPath>..\..\..\Libs\MarkdownSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>..\..\..\Libs\Microsoft.Dynamic.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism">
-      <HintPath>..\..\Libs\Microsoft.Practices.Prism.dll</HintPath>
+      <HintPath>..\..\..\Libs\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity">
+      <HintPath>..\..\..\Libs\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.UnityExtensions">
-      <HintPath>..\..\Libs\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
+      <HintPath>..\..\..\Libs\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\..\Libs\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity">
-      <HintPath>..\..\Libs\Microsoft.Practices.Unity.dll</HintPath>
+      <HintPath>..\..\..\Libs\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>..\..\..\Libs\Microsoft.Scripting.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
-      <HintPath>..\..\Libs\NLog.dll</HintPath>
+      <HintPath>..\..\..\Libs\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IO.Abstractions">
+      <HintPath>..\..\..\Libs\System.IO.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Interactivity">
-      <HintPath>..\..\Libs\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\..\..\Libs\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -77,10 +94,10 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Xceed.Wpf.AvalonDock">
-      <HintPath>..\..\Libs\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <HintPath>..\..\..\Libs\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.Toolkit">
-      <HintPath>..\..\Libs\Xceed.Wpf.Toolkit.dll</HintPath>
+      <HintPath>..\..\..\Libs\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -1,26 +1,32 @@
 ﻿using System;
-using MarkdownSharp;
 using Wide.Interfaces;
 using Wide.Interfaces.Services;
 using System.Threading;
+using ICSharpCode.AvalonEdit.Highlighting.Xshd;
+using ICSharpCode.AvalonEdit.Highlighting;
+using System.Xml;
 
 namespace Turtle_IDE.Core
 {
     /// <summary>
     /// MDView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MDView : IContentView
+    public partial class PYView : IContentView
     {
-        private Markdown _md;
         private IStatusbarService _statusbar;
         private Thread t;
+        public static ICSharpCode.AvalonEdit.TextEditor editor;
+        public static PythonConsoleControl.IronPythonConsoleControl console;
 
-        public MDView(IStatusbarService statusbar)
+        public PYView(IStatusbarService statusbar)
         {
-            _md = new Markdown();
             this._statusbar = statusbar;
             InitializeComponent();
             textEditor.TextArea.Caret.PositionChanged += Caret_PositionChanged;
+            editor = textEditor;
+            console = pythonConsole;
+
+            //textEditor.SyntaxHighlighting = HighlightingLoader.Load(new XmlTextReader(Environment.CurrentDirectory + "\\Python-Mode.xshd"), HighlightingManager.Instance);
         }
 
         private void Caret_PositionChanged(object sender, EventArgs e)
@@ -33,7 +39,7 @@ namespace Turtle_IDE.Core
             var model = this.DataContext as IDEModel;
             if (model != null)
             {
-                model.SetHtml(_md.Transform(textEditor.Text));
+                // Add autocomplete 
             }
         }
 

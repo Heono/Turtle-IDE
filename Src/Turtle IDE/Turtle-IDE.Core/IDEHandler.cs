@@ -10,8 +10,8 @@ using Microsoft.Win32;
 
 namespace Turtle_IDE.Core
 {
-    [FileContent("Markdown files", "*.md", 1)]
-    [NewContent("Markdown files", 1, "Creates a new Markdown file", "pack://application:,,,/Turtle-IDE.Core;component/Icons/MDType.png")]
+    [FileContent("Python files", "*.py", 1)]
+    [NewContent("Python files", 1, "Creates a new Python file", "pack://application:,,,/Turtle-IDE.Core;component/Icons/PyType.png")]
     internal class IDEHandler : IContentHandler
     {
         /// <summary>
@@ -47,10 +47,10 @@ namespace Turtle_IDE.Core
         {
             var vm = _container.Resolve<IDEViewModel>();
             var model = _container.Resolve<IDEModel>();
-            var view = _container.Resolve<MDView>();
+            var view = _container.Resolve<PYView>();
 
             //Model details
-            _loggerService.Log("Creating a new simple file using MDHandler", LogCategory.Info, LogPriority.Low);
+            _loggerService.Log("Creating a new simple file using PYHandler", LogCategory.Info, LogPriority.Low);
 
             //Clear the undo stack
             model.Document.UndoStack.ClearAll();
@@ -58,7 +58,7 @@ namespace Turtle_IDE.Core
             //Set the model and view
             vm.SetModel(model);
             vm.SetView(view);
-            vm.Title = "untitled-MD";
+            vm.Title = "untitled-PY";
             vm.View.DataContext = model;
             vm.SetHandler(this);
             model.SetDirty(true);
@@ -81,7 +81,7 @@ namespace Turtle_IDE.Core
             }
 
             extension = Path.GetExtension(location);
-            return File.Exists(location) && extension == ".md";
+            return File.Exists(location) && extension == ".py";
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Turtle_IDE.Core
             {
                 IDEViewModel vm = _container.Resolve<IDEViewModel>();
                 var model = _container.Resolve<IDEModel>();
-                var view = _container.Resolve<MDView>();
+                var view = _container.Resolve<PYView>();
 
                 //Model details
                 model.SetLocation(info);
@@ -153,18 +153,18 @@ namespace Turtle_IDE.Core
 
             if (mdViewModel == null)
             {
-                _loggerService.Log("ContentViewModel needs to be a MDViewModel to save details", LogCategory.Exception,
+                _loggerService.Log("ContentViewModel needs to be a PYViewModel to save details", LogCategory.Exception,
                                    LogPriority.High);
-                throw new ArgumentException("ContentViewModel needs to be a MDViewModel to save details");
+                throw new ArgumentException("ContentViewModel needs to be a PYViewModel to save details");
             }
 
             var mdModel = mdViewModel.Model as IDEModel;
 
             if (mdModel == null)
             {
-                _loggerService.Log("MDViewModel does not have a MDModel which should have the text",
+                _loggerService.Log("MDViewModel does not have a PYModel which should have the text",
                                    LogCategory.Exception, LogPriority.High);
-                throw new ArgumentException("MDViewModel does not have a MDModel which should have the text");
+                throw new ArgumentException("MDViewModel does not have a PYModel which should have the text");
             }
 
             var location = mdModel.Location as string;
@@ -181,8 +181,8 @@ namespace Turtle_IDE.Core
                     _dialog.InitialDirectory = Path.GetDirectoryName(location);
 
                 _dialog.CheckPathExists = true;
-                _dialog.DefaultExt = "md";
-                _dialog.Filter = "Markdown files (*.md)|*.md";
+                _dialog.DefaultExt = "py";
+                _dialog.Filter = "Python files (*.py)|*.py";
 
                 if (_dialog.ShowDialog() == true)
                 {
