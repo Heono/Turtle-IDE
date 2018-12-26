@@ -36,10 +36,6 @@
       <HintPath>..\..\..\Libs\ICSharpCode.AvalonEdit.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="MarkdownSharp">
-      <HintPath>..\..\Libs\MarkdownSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>..\..\..\Libs\Microsoft.Practices.Prism.dll</HintPath>
       <Private>False</Private>
@@ -122,6 +118,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\PyType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

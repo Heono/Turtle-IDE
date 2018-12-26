@@ -13,8 +13,7 @@
     <DockPanel 
       Opacity="0.5" 
       Panel.ZIndex="200"
-      VerticalAlignment="Bottom"
-    >
+      VerticalAlignment="Bottom">
       <Grid 
         x:Name="infoGrid"
         x:FieldModifier="public"
