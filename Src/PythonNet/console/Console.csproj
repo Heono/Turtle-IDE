@@ -74,8 +74,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseWinPY3|x64'">
     <PlatformTarget>x86</PlatformTarget>
-    <OutputPath>..\..\..\Build\Lib\</OutputPath>
-    <DocumentationFile>..\..\..\Build\Lib\nPython.xml</DocumentationFile>
+    <OutputPath>..\..\..\Build\External\PythonNet\</OutputPath>
+    <DocumentationFile>..\..\..\Build\External\PythonNet\nPython.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugMonoPY3|x64'">

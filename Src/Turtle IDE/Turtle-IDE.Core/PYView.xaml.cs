@@ -5,6 +5,9 @@ using System.Threading;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using ICSharpCode.AvalonEdit.Highlighting;
 using System.Xml;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Windows;
 
 namespace Turtle_IDE.Core
 {
@@ -25,8 +28,14 @@ namespace Turtle_IDE.Core
             textEditor.TextArea.Caret.PositionChanged += Caret_PositionChanged;
             editor = textEditor;
             console = pythonConsole;
-
-            textEditor.SyntaxHighlighting = HighlightingLoader.Load(new XmlTextReader(Environment.CurrentDirectory + @"\Res\Python.xshd"), HighlightingManager.Instance);
+            try
+            {
+                textEditor.SyntaxHighlighting = HighlightingLoader.Load(new XmlTextReader(Environment.CurrentDirectory + @"\Resource\Python.xshd"), HighlightingManager.Instance);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Caret_PositionChanged(object sender, EventArgs e)

@@ -80,8 +80,8 @@
     <Optimize>false</Optimize>
     <DebugType>full</DebugType>
     <Prefer32Bit>false</Prefer32Bit>
-    <OutputPath>..\..\..\Build\Lib\</OutputPath>
-    <DocumentationFile>..\..\..\Build\Lib\Python.Runtime.xml</DocumentationFile>
+    <OutputPath>..\..\..\Build\External\PythonNet\</OutputPath>
+    <DocumentationFile>..\..\..\Build\External\PythonNet\Python.Runtime.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

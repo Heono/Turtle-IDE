@@ -31,7 +31,7 @@ namespace Turtle_IDE
 
         protected override IModuleCatalog CreateModuleCatalog()
         {
-            var catalog = new MultipleDirectoryModuleCatalog(new List<string>() { @".", @".\Lib" });
+            var catalog = new MultipleDirectoryModuleCatalog(new List<string>() { @".", @".\External", @".\Internal" });
             return catalog;
         }
     }
