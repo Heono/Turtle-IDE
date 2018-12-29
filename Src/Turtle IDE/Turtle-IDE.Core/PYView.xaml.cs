@@ -8,6 +8,9 @@ using System.Xml;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.IO;
+using System.Collections.Generic;
+using ICSharpCode.AvalonEdit.Rendering;
 
 namespace Turtle_IDE.Core
 {
@@ -20,6 +23,7 @@ namespace Turtle_IDE.Core
         private Thread t;
         public static ICSharpCode.AvalonEdit.TextEditor editor;
         public static PythonConsoleControl.IronPythonConsoleControl console;
+        private bool isModuleLoaded = false;
 
         public PYView(IStatusbarService statusbar)
         {
@@ -30,7 +34,21 @@ namespace Turtle_IDE.Core
             console = pythonConsole;
             try
             {
-                textEditor.SyntaxHighlighting = HighlightingLoader.Load(new XmlTextReader(Environment.CurrentDirectory + @"\Resource\Python.xshd"), HighlightingManager.Instance);
+                IHighlightingDefinition pythonHighlighting;
+                using (Stream s = typeof(PYView).Assembly.GetManifestResourceStream("Turtle_IDE.Core.Resource.Python.xshd"))
+                {
+                    if (s == null)
+                        throw new InvalidOperationException("Could not find embedded resource");
+                    using (XmlReader reader = new XmlTextReader(s))
+                    {
+                        pythonHighlighting = ICSharpCode.AvalonEdit.Highlighting.Xshd.
+                            HighlightingLoader.Load(reader, HighlightingManager.Instance);
+                    }
+                }
+
+                HighlightingManager.Instance.RegisterHighlighting("Python Highlighting", new string[] { ".cool" }, pythonHighlighting);
+                textEditor.SyntaxHighlighting = pythonHighlighting;
+                IList<IVisualLineTransformer> transformers = textEditor.TextArea.TextView.LineTransformers;
             }
             catch (Exception e)
             {
@@ -78,6 +96,18 @@ namespace Turtle_IDE.Core
                 i++;
             }
             _statusbar.Progress(false, i, 1000);
+        }
+
+        private void PythonConsole_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (isModuleLoaded == false)
+            {
+                string script = "import sys\n" +
+                "sys.path.append(\"External\\IronPython.2.7.9\\Lib\")\n" +
+                "sys.path.append(\"External\\IronPython.2.7.9\\Lib\\site-packages\")";
+                pythonConsole.Console.RunStatements(script);
+                isModuleLoaded = true;
+            }
         }
     }
 }

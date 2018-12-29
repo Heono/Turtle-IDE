@@ -107,6 +107,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PythonConsole\IronPythonConsoleForm\IronPythonConsoleForm.csproj">
+      <Project>{5b4de2a6-8357-4f45-bf54-7c3cdffb7e22}</Project>
+      <Name>IronPythonConsoleForm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wide\Wide.csproj">
       <Project>{9f20f5ef-4f7e-4ae2-a462-4cd2256fb3ff}</Project>
       <Name>Wide</Name>

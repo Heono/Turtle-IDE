@@ -114,5 +114,10 @@ namespace PythonConsoleControl
     {
       pad.Dispose();
     }
+
+    private void UserControl_Loaded(object sender, RoutedEventArgs e)
+    {
+      
+    }
   }
 }

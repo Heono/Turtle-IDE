@@ -25,6 +25,6 @@
                                FontFamily="{Binding Source={x:Static Settings:EditorOptions.Default}, Path=FontFamily}"
                                FontSize="{Binding Source={x:Static Settings:EditorOptions.Default}, Path=FontSize}" />
         <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="1" ResizeBehavior="PreviousAndNext" Height="5" Background="#FFBCBCBC" />
-        <IPCC:IronPythonConsoleControl x:Name="pythonConsole" Grid.Row="2"></IPCC:IronPythonConsoleControl>
+        <IPCC:IronPythonConsoleControl x:Name="pythonConsole" Grid.Row="2" GotFocus="PythonConsole_GotFocus"></IPCC:IronPythonConsoleControl>
     </Grid>
 </UserControl>
