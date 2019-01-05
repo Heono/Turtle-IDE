@@ -4,10 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit"
-             xmlns:Core="clr-namespace:Turtle_IDE.Core"
              xmlns:Settings="clr-namespace:Turtle_IDE.Core.Settings"
-             xmlns:IPCC="clr-namespace:PythonConsoleControl;assembly=IronPythonConsoleForm"
-             xmlns:local="clr-namespace:Turtle_IDE.Core"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>

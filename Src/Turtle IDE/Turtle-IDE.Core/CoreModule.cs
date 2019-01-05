@@ -19,6 +19,7 @@ namespace Turtle_IDE.Core
 {
     [Module(ModuleName = "Turtle-IDE.Core")]
     [ModuleDependency("Wide.Tools.Logger")]
+    [ModuleDependency("Turtle-IDE.Tools")]
     public class CoreModule : IModule
     {
         private IUnityContainer _container;
@@ -113,6 +114,7 @@ namespace Turtle_IDE.Core
             var saveAsCommand = new DelegateCommand(SaveAsDocument, CanExecuteSaveAsDocument);
             var themeCommand = new DelegateCommand<string>(ThemeChangeCommand);
             var loggerCommand = new DelegateCommand(ToggleLogger);
+            var consoleCommand = new DelegateCommand(ToggleConsole);
             var runCommand = new DelegateCommand(runPython);
 
 
@@ -123,6 +125,7 @@ namespace Turtle_IDE.Core
             manager.RegisterCommand("LOGSHOW", loggerCommand);
             manager.RegisterCommand("THEMECHANGE", themeCommand);
             manager.RegisterCommand("RUN", runCommand);
+            manager.RegisterCommand("CONSOLESHOW", consoleCommand);
         }
 
         private void CloseCommandExecute()
@@ -142,6 +145,7 @@ namespace Turtle_IDE.Core
             var recentFiles = _container.Resolve<IRecentViewSettings>();
             IWorkspace workspace = _container.Resolve<AbstractWorkspace>();
             ToolViewModel logger = workspace.Tools.First(f => f.ContentId == "Logger");
+            ToolViewModel console = workspace.Tools.First(f => f.ContentId == "Console");
 
             menuService.Add(new MenuItemViewModel("_File", 1));
 
@@ -218,6 +222,14 @@ namespace Turtle_IDE.Core
                                                                            @"pack://application:,,,/Turtle-IDE.Core;component/Icons/Undo_16x.png")),
                                                                    manager.GetCommand("LOGSHOW"))
                 { IsCheckable = true, IsChecked = logger.IsVisible });
+
+            if (console != null)
+                menuService.Get("_View").Add(new MenuItemViewModel("_Console", 1,
+                                                                   new BitmapImage(
+                                                                       new Uri(
+                                                                           @"pack://application:,,,/Turtle-IDE.Core;component/Icons/Undo_16x.png")),
+                                                                   manager.GetCommand("CONSOLESHOW"))
+                { IsCheckable = true, IsChecked = console.IsVisible });
 
             menuService.Get("_View").Add(new MenuItemViewModel("Themes", 1));
 
@@ -330,6 +342,24 @@ namespace Turtle_IDE.Core
                 logger.IsVisible = !logger.IsVisible;
                 var mi = menuService.Get("_View").Get("_Logger") as MenuItemViewModel;
                 mi.IsChecked = logger.IsVisible;
+            }
+        }
+
+        #endregion
+
+        #region Console click
+
+        private void ToggleConsole()
+        {
+            IWorkspace workspace = _container.Resolve<AbstractWorkspace>();
+            var menuService = _container.Resolve<IMenuService>();
+            ToolViewModel console = workspace.Tools.First(f => f.ContentId == "Console");
+            if (console != null)
+            {
+                console.IsVisible = !console.IsVisible;
+                // console on off 상태 추가
+                var mi = menuService.Get("_View").Get("_Console") as MenuItemViewModel;
+                mi.IsChecked = console.IsVisible;
             }
         }
 

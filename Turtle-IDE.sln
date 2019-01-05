@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wide", "Src\Wide\Wide\Wide.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wide.Tools.Logger", "Src\Wide\Wide.Tools.Logger\Wide.Tools.Logger.csproj", "{982D3282-82A0-4586-99ED-F60D2FD67517}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turtle-IDE.Tools", "Turtle-IDE.Tools\Turtle-IDE.Tools.csproj", "{0DDB7D82-3B9A-4E81-AA14-258ED9461297}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turtle-IDE.Tools", "Src\Turtle IDE\Turtle-IDE.Tools\Turtle-IDE.Tools.csproj", "{0DDB7D82-3B9A-4E81-AA14-258ED9461297}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
