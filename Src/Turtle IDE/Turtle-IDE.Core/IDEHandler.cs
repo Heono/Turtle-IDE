@@ -58,7 +58,7 @@ namespace Turtle_IDE.Core
             //Set the model and view
             vm.SetModel(model);
             vm.SetView(view);
-            vm.Title = "untitled-PY";
+            vm.Title = "untitled-py";
             vm.View.DataContext = model;
             vm.SetHandler(this);
             model.SetDirty(true);

@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="BrowserBehavior.cs" />
     <Compile Include="CoreModule.cs" />
+    <Compile Include="GuiMacro.cs" />
     <Compile Include="IDEHandler.cs" />
     <Compile Include="IDEModel.cs" />
     <Compile Include="IDEViewModel.cs" />
