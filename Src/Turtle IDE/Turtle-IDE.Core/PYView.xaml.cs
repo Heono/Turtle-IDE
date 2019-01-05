@@ -52,9 +52,9 @@ namespace Turtle_IDE.Core
             
             try
             {
-                byte[] r = Encoding.Default.GetBytes("40");
-                byte[] g = Encoding.Default.GetBytes("3C");
-                byte[] b = Encoding.Default.GetBytes("3B");
+                byte[] r = Encoding.Default.GetBytes("30");
+                byte[] g = Encoding.Default.GetBytes("40");
+                byte[] b = Encoding.Default.GetBytes("34");
                 textEditor.Background = new SolidColorBrush(Color.FromRgb(r[0], g[0], b[0]));
                 IHighlightingDefinition pythonHighlighting;
                 using (Stream s = typeof(PYView).Assembly.GetManifestResourceStream("Turtle_IDE.Core.Resource.Python.xshd"))

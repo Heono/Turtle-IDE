@@ -63,7 +63,7 @@ namespace Turtle_IDE.Core
 
             toolbarService.Add(new ToolbarViewModel("Run", 1) { Band = 1, BandIndex = 2 });
             toolbarService.Get("Run").Add(new MenuItemViewModel("Run", 1, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png"))));
-            toolbarService.Get("Run").Get("Run").Add(new MenuItemViewModel("Run with IronPython", 1, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png")), manager.GetCommand("RUN")));
+            //toolbarService.Get("Run").Get("Run").Add(new MenuItemViewModel("Run with IronPython", 1, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png")), manager.GetCommand("RUN")));
             toolbarService.Get("Run").Get("Run").Add(new MenuItemViewModel("Run with Python3", 2, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png")), manager.GetCommand("RUN")));
 
             menuService.Get("_Tools").Add(toolbarService.RightClickMenu);
@@ -339,12 +339,7 @@ namespace Turtle_IDE.Core
 
         private void runPython()
         {
-            string statementsToRun = "";
-            if (PYView.editor.TextArea.Selection.Length > 0)
-                statementsToRun = PYView.editor.TextArea.Selection.GetText();
-            else
-                statementsToRun = PYView.editor.TextArea.Document.Text;
-            PYView.console.Pad.Console.RunStatements(statementsToRun);
+            //Run Python
         }
         #endregion
 

@@ -2,12 +2,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
-    <TextBox Margin="5" Text="{Binding Path=Text, Mode=OneWay}" IsReadOnly="True" BorderBrush="White">
+    <TextBox Margin="5" Text="{Binding Path=Text, Mode=OneWay}" IsReadOnly="True" Background="#252526" Foreground="White">
         <TextBox.Style>
             <Style TargetType="TextBox">
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="BorderBrush" Value="White" />
+                        <Setter Property="Background" Value="#252526" />
+                        <Setter Property="Foreground" Value="White" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
