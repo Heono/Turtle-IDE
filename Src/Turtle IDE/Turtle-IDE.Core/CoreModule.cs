@@ -114,7 +114,7 @@ namespace Turtle_IDE.Core
             var saveAsCommand = new DelegateCommand(SaveAsDocument, CanExecuteSaveAsDocument);
             var themeCommand = new DelegateCommand<string>(ThemeChangeCommand);
             var loggerCommand = new DelegateCommand(ToggleLogger);
-            var consoleCommand = new DelegateCommand(ToggleConsole);
+            var toggleConsole = new DelegateCommand(ToggleConsole);
             var runCommand = new DelegateCommand(runPython);
 
 
@@ -125,7 +125,7 @@ namespace Turtle_IDE.Core
             manager.RegisterCommand("LOGSHOW", loggerCommand);
             manager.RegisterCommand("THEMECHANGE", themeCommand);
             manager.RegisterCommand("RUN", runCommand);
-            manager.RegisterCommand("CONSOLESHOW", consoleCommand);
+            manager.RegisterCommand("CONSOLESHOW", toggleConsole);
         }
 
         private void CloseCommandExecute()
@@ -357,7 +357,6 @@ namespace Turtle_IDE.Core
             if (console != null)
             {
                 console.IsVisible = !console.IsVisible;
-                // console on off 상태 추가
                 var mi = menuService.Get("_View").Get("_Console") as MenuItemViewModel;
                 mi.IsChecked = console.IsVisible;
             }

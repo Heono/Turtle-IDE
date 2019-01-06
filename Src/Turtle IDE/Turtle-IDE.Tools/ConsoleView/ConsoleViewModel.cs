@@ -25,8 +25,8 @@ namespace Turtle_IDE.Tools.ConsoleView
             _view.DataContext = _model;
             View = _view;
 
-            _model = new ConsoleModel();
-            Model = _model;
+            //_model = new ConsoleModel();
+            //Model = _model;
             IsVisible = false;
         }
 
