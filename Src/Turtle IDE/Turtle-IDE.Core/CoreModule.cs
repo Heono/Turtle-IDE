@@ -14,6 +14,15 @@ using Wide.Interfaces.Settings;
 using Wide.Interfaces.Themes;
 using Turtle_IDE.Core.Settings;
 using System.Windows;
+using System.ComponentModel;
+using System.IO;
+using System.Threading;
+using System.Diagnostics;
+using Wide.Core.TextDocument;
+using Microsoft.Win32;
+using Turtle_IDE.Core.PythonView;
+using System.Collections.Generic;
+using System.Management;
 
 namespace Turtle_IDE.Core
 {
@@ -35,12 +44,84 @@ namespace Turtle_IDE.Core
         {
             _eventAggregator.GetEvent<SplashMessageUpdateEvent>().Publish(new SplashMessageUpdateEvent
             { Message = "Loading Core Module" });
+            Application.Current.MainWindow.Closing += new CancelEventHandler(MainWindow_Closing);
+            Application.Current.MainWindow.ContentRendered += new EventHandler(MainWindow_ContentRendered);
+            Application.Current.MainWindow.Topmost = true;
             LoadTheme();
             LoadCommands();
             LoadMenus();
             LoadToolbar();
             RegisterParts();
             LoadSettings();
+
+        }
+
+        private static void KillProcessAndChildren(int pid)
+        {
+            // Cannot close 'system idle process'.
+            if (pid == 0)
+            {
+                return;
+            }
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher
+                    ("Select * From Win32_Process Where ParentProcessID=" + pid);
+            ManagementObjectCollection moc = searcher.Get();
+            foreach (ManagementObject mo in moc)
+            {
+                KillProcessAndChildren(Convert.ToInt32(mo["ProcessID"]));
+            }
+            try
+            {
+                Process proc = Process.GetProcessById(pid);
+                proc.Kill();
+            }
+            catch (ArgumentException)
+            {
+                // Process already exited.
+            }
+        }
+
+        private int GetParentProcessId(Process p)
+        {
+            int parentId = 0;
+            try
+            {
+                ManagementObject mo = new ManagementObject("win32_process.handle='" + p.Id + "'");
+                mo.Get();
+                parentId = Convert.ToInt32(mo["ParentProcessId"]);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                parentId = 0;
+            }
+            return parentId;
+        }
+
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            //Process turtleIDE = Process.GetCurrentProcess();
+            //int parentId = GetParentProcessId(turtleIDE);
+            //KillProcessAndChildren(parentId);
+            try
+            {
+                ProcessStartInfo processStartInfo = new ProcessStartInfo("taskkill", "/F /T /IM Turtle-IDE.exe")
+                {
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                    WorkingDirectory = System.AppDomain.CurrentDomain.BaseDirectory,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true
+                };
+                Process.Start(processStartInfo);
+            }
+            catch { }
+        }
+
+        private void MainWindow_ContentRendered(object sender, EventArgs e)
+        {
+            Application.Current.MainWindow.Topmost = false;
         }
 
         private void LoadToolbar()
@@ -63,7 +144,7 @@ namespace Turtle_IDE.Core
             toolbarService.Get("Edit").Add(menuService.Get("_Edit").Get("_Paste"));
 
             toolbarService.Add(new ToolbarViewModel("Run", 1) { Band = 1, BandIndex = 2 });
-            toolbarService.Get("Run").Add(new MenuItemViewModel("Run", 1, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png"))));
+            toolbarService.Get("Run").Add(new MenuItemViewModel("Run", 1, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png")), manager.GetCommand("RUN")));
             //toolbarService.Get("Run").Get("Run").Add(new MenuItemViewModel("Run with IronPython", 1, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png")), manager.GetCommand("RUN")));
             toolbarService.Get("Run").Get("Run").Add(new MenuItemViewModel("Run with Python3", 2, new BitmapImage(new Uri(@"pack://application:,,,/Turtle-IDE.Core;component/Icons/Play.png")), manager.GetCommand("RUN")));
 
@@ -82,12 +163,21 @@ namespace Turtle_IDE.Core
 
         private void RegisterParts()
         {
-            _container.RegisterType<IDEHandler>();
-            _container.RegisterType<IDEViewModel>();
-            _container.RegisterType<PYView>();
+            
+            _container.RegisterType<PyCraftHandler>();
+            _container.RegisterType<PyCraftViewModel>();
+            _container.RegisterType<PyCraftView>();
 
-            IContentHandler handler = _container.Resolve<IDEHandler>();
+            IContentHandler handler = _container.Resolve<PyCraftHandler>();
             _container.Resolve<IContentHandlerRegistry>().Register(handler);
+
+            _container.RegisterType<PyHandler>();
+            _container.RegisterType<PyViewModel>();
+            _container.RegisterType<PyView>();
+
+            handler = _container.Resolve<PyHandler>();
+            _container.Resolve<IContentHandlerRegistry>().Register(handler);
+
         }
 
         private void LoadTheme()
@@ -368,7 +458,61 @@ namespace Turtle_IDE.Core
 
         private void runPython()
         {
-            //Run Python
+            IWorkspace workspace = _container.Resolve<AbstractWorkspace>();
+            var textViewModel = workspace.ActiveDocument as TextViewModel;
+            string pyPath = Environment.CurrentDirectory + @"\External\WPy3710\python-3.7.1\python.exe";
+
+            if (textViewModel == null) { return; }
+
+            TextModel textModel = textViewModel.Model as TextModel;
+
+            if (textModel == null) { return; }
+
+            string location = textModel.Location as string;
+
+            if (location == null)
+            {
+                //If there is no location, just prompt for Save As..
+                string statementsToRun = textModel.Document.Text;
+
+                DirectoryInfo info = new DirectoryInfo(Environment.CurrentDirectory + @"\temp");
+                if (!info.Exists)
+                {
+                    info.Create();
+                }
+                FileStream fs = new FileStream(Environment.CurrentDirectory +
+                    @"\temp\temp.py", FileMode.Create, FileAccess.Write);
+                StreamWriter sw = new StreamWriter(fs);
+                sw.WriteLine(statementsToRun);
+                sw.Close();
+                fs.Close();
+
+                new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    var cmd = new Process();
+                    cmd.StartInfo.FileName = pyPath;
+                    cmd.StartInfo.Arguments = Environment.CurrentDirectory + @"\temp\temp.py";
+                    //cmd.StartInfo.WorkingDirectory = pyFile.Replace("\\" + Path.GetFileName(pyFile), "");
+                    //cmd.StartInfo.WindowStyle = windowStyle;
+                    cmd.Start();
+                    cmd.WaitForExit();
+                }).Start();
+            }
+            else
+            {
+                new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    var cmd = new Process();
+                    cmd.StartInfo.FileName = pyPath;
+                    cmd.StartInfo.Arguments = location;
+                    cmd.StartInfo.WorkingDirectory = location.Replace("\\" + Path.GetFileName(location), "");
+                    //cmd.StartInfo.WindowStyle = windowStyle;
+                    cmd.Start();
+                    cmd.WaitForExit();
+                }).Start();
+            }
         }
         #endregion
 

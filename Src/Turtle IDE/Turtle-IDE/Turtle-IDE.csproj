@@ -132,5 +132,8 @@
     <Folder Include="bin\Debug\" />
     <Folder Include="bin\Release\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pycraft.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: pycraft-snu
+Version: 0.0.0
+Summary: UNKNOWN
+Home-page: https://github.com/minecraft-codingmath/pycraft
+Author: The Pycraft Team @ SNUGifted '18
+License: UNKNOWN
+Project-URL: Source, https://github.com/minecraft-codingmath/pycraft
+Project-URL: Bug Reports, https://github.com/minecraft-codingmath/pycraft/issues
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: pyglet (==1.3.2)
+Requires-Dist: Deprecated (==1.2.0)
+Requires-Dist: msgpack-python (==0.5.6)
+Requires-Dist: pyzmq (==17.1.2)
+
+# PyCraft
+
+Play Minecraft w/ code
+
+

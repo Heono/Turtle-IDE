@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: craft-api
+Version: 0.1.0
+Summary: UNKNOWN
+Home-page: https://github.com/minecraft-codingmath/pycraft-api
+License: UNKNOWN
+Project-URL: Source, https://github.com/minecraft-codingmath/pycraft-api
+Project-URL: Bug Reports, https://github.com/minecraft-codingmath/pycraft-api/issues
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: msgpack-python (==0.5.6)
+Requires-Dist: pyzmq (==17.1.2)
+
+# pycraft-api
+
+Pycraft API
+
+

@@ -11,12 +11,12 @@
             <Button Content="New Console" Click="newConsole_Click"></Button>
             <Button x:Name="btn_closeConsole" Content="Close Console" Click="closeConsole_Click"></Button>
             <Separator></Separator>
-            <Button VerticalAlignment="Top" HorizontalAlignment="Left" Click="newPyShell_Click">
+            <!--<Button VerticalAlignment="Top" HorizontalAlignment="Left" Click="newPyShell_Click">
                 <StackPanel Orientation="Horizontal" Margin="1">
                     <Image Margin="0,0,5,0" Width="15" Height="15" Source="pack://application:,,,/Turtle-IDE.Tools;component/Resource/pyImg.png" />
                     <TextBlock>New Python Shell</TextBlock>
                 </StackPanel>
-            </Button>
+            </Button>-->
         </ToolBar>
         <WindowsFormsHost x:Name="wfh"></WindowsFormsHost>
     </DockPanel>

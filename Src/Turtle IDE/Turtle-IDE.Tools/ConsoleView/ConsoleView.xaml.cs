@@ -39,7 +39,7 @@ namespace Turtle_IDE.Tools.ConsoleView
             winfrmHost = wfh;
 
             pyPath = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) 
-                     + @"\External\WPy-3710\python-3.7.1\python.exe";
+                     + @"\External\WPy3710\python-3.7.1\python.exe";
 
             string lsOurDir;
 
@@ -51,7 +51,7 @@ namespace Turtle_IDE.Tools.ConsoleView
             argDirectory = Directory.GetCurrentDirectory();
             lsOurDir = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             argXmlFile = Path.Combine(lsOurDir, @"External\ConEmu\ConEmu.xml");
-            argCmdLine = @"{cmd}"; // Use ConEmu's default {cmd} task
+            argCmdLine = pyPath; //@"{cmd}"; // Use ConEmu's default {cmd} task
             termPanel.Resize += new System.EventHandler(this.termPanel_Resize);
 
             timer1 = new System.Windows.Forms.Timer();
@@ -112,7 +112,8 @@ namespace Turtle_IDE.Tools.ConsoleView
             {
                 try
                 {
-                    lsConEmuExe = ConEmu.Modules[0].FileName;
+                    //lsConEmuExe = ConEmu.Modules[0].FileName;
+                    lsConEmuExe = ConEmu.StartInfo.FileName;
                     bExeLoaded = true;
                 }
                 catch (System.ComponentModel.Win32Exception)
@@ -263,11 +264,6 @@ namespace Turtle_IDE.Tools.ConsoleView
             }
         }
 
-        private void closeBtn_Click(object sender, EventArgs e)
-        {
-            ExecuteGuiMacro("Close(2,1)");
-        }
-
         protected virtual void RaisePropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -304,6 +300,11 @@ namespace Turtle_IDE.Tools.ConsoleView
                 startConsole();
                 btn_closeConsole.IsEnabled = true;
             }
+        }
+
+        public void closeConsoleProcess()
+        {
+            ExecuteGuiMacro("Close(2,1)");
         }
 
         private void closeConsole_Click(object sender, System.Windows.RoutedEventArgs e)

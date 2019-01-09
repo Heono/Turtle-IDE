@@ -28,7 +28,7 @@ namespace Turtle_IDE
         {
             get
             {
-                ImageSource imageSource = new BitmapImage(new Uri("pack://application:,,,/Turtle-IDE;component/Icon.png"));
+                ImageSource imageSource = new BitmapImage(new Uri("pack://application:,,,/Turtle-IDE;component/Pycraft.ico"));
                 return imageSource;
             }
         }
