@@ -51,7 +51,7 @@ namespace Turtle_IDE.Tools.ConsoleView
             argDirectory = Directory.GetCurrentDirectory();
             lsOurDir = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             argXmlFile = Path.Combine(lsOurDir, @"External\ConEmu\ConEmu.xml");
-            argCmdLine = pyPath; //@"{cmd}"; // Use ConEmu's default {cmd} task
+            argCmdLine = @"{cmd}"; //@"{cmd}"; // Use ConEmu's default {cmd} task
             termPanel.Resize += new System.EventHandler(this.termPanel_Resize);
 
             timer1 = new System.Windows.Forms.Timer();

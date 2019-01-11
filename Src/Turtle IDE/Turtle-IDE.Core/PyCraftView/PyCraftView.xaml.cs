@@ -76,11 +76,17 @@ namespace Turtle_IDE.Core
 
             new Thread(() =>
             {
-                pycraft = new Process();
-                Thread.CurrentThread.IsBackground = true;
-                pycraft.StartInfo.FileName = Environment.CurrentDirectory + @"\External\WPy3710\python-3.7.1\Scripts\pycraft.exe";
-                pycraft.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                pycraft.Start();               
+                try
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    ProcessStartInfo pro = new ProcessStartInfo("cmd.exe", "/k" + Environment.CurrentDirectory + @"\External\\WPy3710\scripts\pycraft.bat");
+                    pro.WindowStyle = ProcessWindowStyle.Hidden;
+                    Process pycraft = Process.Start(pro);
+                }
+                catch (Exception e)
+                {
+                    System.Windows.Forms.MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }).Start();
 
             IntPtr hWnd = IntPtr.Zero;
